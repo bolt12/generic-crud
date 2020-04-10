@@ -77,6 +77,17 @@
   (major1) == 2 && (major2) == 22 && (minor) <= 0)
 #endif /* MIN_TOOL_VERSION_haddock */
 
+/* tool happy-1.19.11 */
+#ifndef TOOL_VERSION_happy
+#define TOOL_VERSION_happy "1.19.11"
+#endif /* TOOL_VERSION_happy */
+#ifndef MIN_TOOL_VERSION_happy
+#define MIN_TOOL_VERSION_happy(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  19 || \
+  (major1) == 1 && (major2) == 19 && (minor) <= 11)
+#endif /* MIN_TOOL_VERSION_happy */
+
 /* tool hpc-0.67 */
 #ifndef TOOL_VERSION_hpc
 #define TOOL_VERSION_hpc "0.67"
@@ -133,7 +144,7 @@
 #endif /* MIN_TOOL_VERSION_strip */
 
 #ifndef CURRENT_COMPONENT_ID
-#define CURRENT_COMPONENT_ID "servant-playground-0.1.0.0-9URRKoQ4Yty5SY4jtBl1nx-servant-playground-exe"
+#define CURRENT_COMPONENT_ID "servant-playground-0.1.0.0-KftmRYO3oNJDzv4LkT4s6f-servant-playground-exe"
 #endif /* CURRENT_COMPONENT_ID */
 #ifndef CURRENT_PACKAGE_VERSION
 #define CURRENT_PACKAGE_VERSION "0.1.0.0"

@@ -33,6 +33,28 @@
   (major1) == 4 && (major2) == 12 && (minor) <= 0)
 #endif /* MIN_VERSION_base */
 
+/* package beam-core-0.8.0.0 */
+#ifndef VERSION_beam_core
+#define VERSION_beam_core "0.8.0.0"
+#endif /* VERSION_beam_core */
+#ifndef MIN_VERSION_beam_core
+#define MIN_VERSION_beam_core(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  8 || \
+  (major1) == 0 && (major2) == 8 && (minor) <= 0)
+#endif /* MIN_VERSION_beam_core */
+
+/* package beam-postgres-0.4.0.0 */
+#ifndef VERSION_beam_postgres
+#define VERSION_beam_postgres "0.4.0.0"
+#endif /* VERSION_beam_postgres */
+#ifndef MIN_VERSION_beam_postgres
+#define MIN_VERSION_beam_postgres(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  4 || \
+  (major1) == 0 && (major2) == 4 && (minor) <= 0)
+#endif /* MIN_VERSION_beam_postgres */
+
 /* package polysemy-1.3.0.0 */
 #ifndef VERSION_polysemy
 #define VERSION_polysemy "1.3.0.0"
@@ -65,6 +87,17 @@
   (major1) == 0 && (major2) <  16 || \
   (major1) == 0 && (major2) == 16 && (minor) <= 2)
 #endif /* MIN_VERSION_servant_server */
+
+/* package text-1.2.3.1 */
+#ifndef VERSION_text
+#define VERSION_text "1.2.3.1"
+#endif /* VERSION_text */
+#ifndef MIN_VERSION_text
+#define MIN_VERSION_text(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  2 || \
+  (major1) == 1 && (major2) == 2 && (minor) <= 3)
+#endif /* MIN_VERSION_text */
 
 /* package transformers-0.5.6.2 */
 #ifndef VERSION_transformers
@@ -143,6 +176,17 @@
   (major1) == 2 && (major2) == 22 && (minor) <= 0)
 #endif /* MIN_TOOL_VERSION_haddock */
 
+/* tool happy-1.19.11 */
+#ifndef TOOL_VERSION_happy
+#define TOOL_VERSION_happy "1.19.11"
+#endif /* TOOL_VERSION_happy */
+#ifndef MIN_TOOL_VERSION_happy
+#define MIN_TOOL_VERSION_happy(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  19 || \
+  (major1) == 1 && (major2) == 19 && (minor) <= 11)
+#endif /* MIN_TOOL_VERSION_happy */
+
 /* tool hpc-0.67 */
 #ifndef TOOL_VERSION_hpc
 #define TOOL_VERSION_hpc "0.67"
@@ -199,10 +243,10 @@
 #endif /* MIN_TOOL_VERSION_strip */
 
 #ifndef CURRENT_PACKAGE_KEY
-#define CURRENT_PACKAGE_KEY "servant-playground-0.1.0.0-DzKFuQ62xj5G9scX18iaHD"
+#define CURRENT_PACKAGE_KEY "servant-playground-0.1.0.0-89SZ8tRrQbw6LIFV8JcF8Y"
 #endif /* CURRENT_PACKAGE_KEY */
 #ifndef CURRENT_COMPONENT_ID
-#define CURRENT_COMPONENT_ID "servant-playground-0.1.0.0-DzKFuQ62xj5G9scX18iaHD"
+#define CURRENT_COMPONENT_ID "servant-playground-0.1.0.0-89SZ8tRrQbw6LIFV8JcF8Y"
 #endif /* CURRENT_COMPONENT_ID */
 #ifndef CURRENT_PACKAGE_VERSION
 #define CURRENT_PACKAGE_VERSION "0.1.0.0"
