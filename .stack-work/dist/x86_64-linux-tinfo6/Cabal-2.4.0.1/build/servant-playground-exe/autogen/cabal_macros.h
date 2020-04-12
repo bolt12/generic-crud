@@ -22,6 +22,28 @@
   (major1) == 4 && (major2) == 12 && (minor) <= 0)
 #endif /* MIN_VERSION_base */
 
+/* package polysemy-1.3.0.0 */
+#ifndef VERSION_polysemy
+#define VERSION_polysemy "1.3.0.0"
+#endif /* VERSION_polysemy */
+#ifndef MIN_VERSION_polysemy
+#define MIN_VERSION_polysemy(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  3 || \
+  (major1) == 1 && (major2) == 3 && (minor) <= 0)
+#endif /* MIN_VERSION_polysemy */
+
+/* package polysemy-plugin-0.2.5.0 */
+#ifndef VERSION_polysemy_plugin
+#define VERSION_polysemy_plugin "0.2.5.0"
+#endif /* VERSION_polysemy_plugin */
+#ifndef MIN_VERSION_polysemy_plugin
+#define MIN_VERSION_polysemy_plugin(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  2 || \
+  (major1) == 0 && (major2) == 2 && (minor) <= 5)
+#endif /* MIN_VERSION_polysemy_plugin */
+
 /* package servant-playground-0.1.0.0 */
 #ifndef VERSION_servant_playground
 #define VERSION_servant_playground "0.1.0.0"
@@ -144,7 +166,7 @@
 #endif /* MIN_TOOL_VERSION_strip */
 
 #ifndef CURRENT_COMPONENT_ID
-#define CURRENT_COMPONENT_ID "servant-playground-0.1.0.0-KftmRYO3oNJDzv4LkT4s6f-servant-playground-exe"
+#define CURRENT_COMPONENT_ID "servant-playground-0.1.0.0-4fC7CvqHCyg9cbpTkvxHEb-servant-playground-exe"
 #endif /* CURRENT_COMPONENT_ID */
 #ifndef CURRENT_PACKAGE_VERSION
 #define CURRENT_PACKAGE_VERSION "0.1.0.0"

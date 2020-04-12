@@ -44,6 +44,17 @@
   (major1) == 0 && (major2) == 8 && (minor) <= 0)
 #endif /* MIN_VERSION_beam_core */
 
+/* package beam-migrate-0.4.0.1 */
+#ifndef VERSION_beam_migrate
+#define VERSION_beam_migrate "0.4.0.1"
+#endif /* VERSION_beam_migrate */
+#ifndef MIN_VERSION_beam_migrate
+#define MIN_VERSION_beam_migrate(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  4 || \
+  (major1) == 0 && (major2) == 4 && (minor) <= 0)
+#endif /* MIN_VERSION_beam_migrate */
+
 /* package beam-postgres-0.4.0.0 */
 #ifndef VERSION_beam_postgres
 #define VERSION_beam_postgres "0.4.0.0"
@@ -65,6 +76,17 @@
   (major1) == 1 && (major2) <  3 || \
   (major1) == 1 && (major2) == 3 && (minor) <= 0)
 #endif /* MIN_VERSION_polysemy */
+
+/* package polysemy-plugin-0.2.5.0 */
+#ifndef VERSION_polysemy_plugin
+#define VERSION_polysemy_plugin "0.2.5.0"
+#endif /* VERSION_polysemy_plugin */
+#ifndef MIN_VERSION_polysemy_plugin
+#define MIN_VERSION_polysemy_plugin(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  2 || \
+  (major1) == 0 && (major2) == 2 && (minor) <= 5)
+#endif /* MIN_VERSION_polysemy_plugin */
 
 /* package servant-0.16.2 */
 #ifndef VERSION_servant
@@ -243,10 +265,10 @@
 #endif /* MIN_TOOL_VERSION_strip */
 
 #ifndef CURRENT_PACKAGE_KEY
-#define CURRENT_PACKAGE_KEY "servant-playground-0.1.0.0-89SZ8tRrQbw6LIFV8JcF8Y"
+#define CURRENT_PACKAGE_KEY "servant-playground-0.1.0.0-CYyEYnuBEgNKUe1AA7uNQU"
 #endif /* CURRENT_PACKAGE_KEY */
 #ifndef CURRENT_COMPONENT_ID
-#define CURRENT_COMPONENT_ID "servant-playground-0.1.0.0-89SZ8tRrQbw6LIFV8JcF8Y"
+#define CURRENT_COMPONENT_ID "servant-playground-0.1.0.0-CYyEYnuBEgNKUe1AA7uNQU"
 #endif /* CURRENT_COMPONENT_ID */
 #ifndef CURRENT_PACKAGE_VERSION
 #define CURRENT_PACKAGE_VERSION "0.1.0.0"

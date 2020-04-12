@@ -29,12 +29,12 @@ version :: Version
 version = Version [0,1,0,0] []
 bindir, libdir, dynlibdir, datadir, libexecdir, sysconfdir :: FilePath
 
-bindir     = "/home/bolt/Desktop/Bolt/Playground/Haskell/servant-playground/.stack-work/install/x86_64-linux-tinfo6/a959b21616bcae181421d90737df295ace33e78aa0b0896fcaa1b719e866732c/8.6.5/bin"
-libdir     = "/home/bolt/Desktop/Bolt/Playground/Haskell/servant-playground/.stack-work/install/x86_64-linux-tinfo6/a959b21616bcae181421d90737df295ace33e78aa0b0896fcaa1b719e866732c/8.6.5/lib/x86_64-linux-ghc-8.6.5/servant-playground-0.1.0.0-89SZ8tRrQbw6LIFV8JcF8Y"
-dynlibdir  = "/home/bolt/Desktop/Bolt/Playground/Haskell/servant-playground/.stack-work/install/x86_64-linux-tinfo6/a959b21616bcae181421d90737df295ace33e78aa0b0896fcaa1b719e866732c/8.6.5/lib/x86_64-linux-ghc-8.6.5"
-datadir    = "/home/bolt/Desktop/Bolt/Playground/Haskell/servant-playground/.stack-work/install/x86_64-linux-tinfo6/a959b21616bcae181421d90737df295ace33e78aa0b0896fcaa1b719e866732c/8.6.5/share/x86_64-linux-ghc-8.6.5/servant-playground-0.1.0.0"
-libexecdir = "/home/bolt/Desktop/Bolt/Playground/Haskell/servant-playground/.stack-work/install/x86_64-linux-tinfo6/a959b21616bcae181421d90737df295ace33e78aa0b0896fcaa1b719e866732c/8.6.5/libexec/x86_64-linux-ghc-8.6.5/servant-playground-0.1.0.0"
-sysconfdir = "/home/bolt/Desktop/Bolt/Playground/Haskell/servant-playground/.stack-work/install/x86_64-linux-tinfo6/a959b21616bcae181421d90737df295ace33e78aa0b0896fcaa1b719e866732c/8.6.5/etc"
+bindir     = "/home/bolt/Desktop/Bolt/Playground/Haskell/servant-playground/.stack-work/install/x86_64-linux-tinfo6/184fed9167b6a0510b70a5ee0eef65a1d275dc3454f9d41772ab4add3f911a04/8.6.5/bin"
+libdir     = "/home/bolt/Desktop/Bolt/Playground/Haskell/servant-playground/.stack-work/install/x86_64-linux-tinfo6/184fed9167b6a0510b70a5ee0eef65a1d275dc3454f9d41772ab4add3f911a04/8.6.5/lib/x86_64-linux-ghc-8.6.5/servant-playground-0.1.0.0-CYyEYnuBEgNKUe1AA7uNQU"
+dynlibdir  = "/home/bolt/Desktop/Bolt/Playground/Haskell/servant-playground/.stack-work/install/x86_64-linux-tinfo6/184fed9167b6a0510b70a5ee0eef65a1d275dc3454f9d41772ab4add3f911a04/8.6.5/lib/x86_64-linux-ghc-8.6.5"
+datadir    = "/home/bolt/Desktop/Bolt/Playground/Haskell/servant-playground/.stack-work/install/x86_64-linux-tinfo6/184fed9167b6a0510b70a5ee0eef65a1d275dc3454f9d41772ab4add3f911a04/8.6.5/share/x86_64-linux-ghc-8.6.5/servant-playground-0.1.0.0"
+libexecdir = "/home/bolt/Desktop/Bolt/Playground/Haskell/servant-playground/.stack-work/install/x86_64-linux-tinfo6/184fed9167b6a0510b70a5ee0eef65a1d275dc3454f9d41772ab4add3f911a04/8.6.5/libexec/x86_64-linux-ghc-8.6.5/servant-playground-0.1.0.0"
+sysconfdir = "/home/bolt/Desktop/Bolt/Playground/Haskell/servant-playground/.stack-work/install/x86_64-linux-tinfo6/184fed9167b6a0510b70a5ee0eef65a1d275dc3454f9d41772ab4add3f911a04/8.6.5/etc"
 
 getBinDir, getLibDir, getDynLibDir, getDataDir, getLibexecDir, getSysconfDir :: IO FilePath
 getBinDir = catchIO (getEnv "servant_playground_bindir") (\_ -> return bindir)
