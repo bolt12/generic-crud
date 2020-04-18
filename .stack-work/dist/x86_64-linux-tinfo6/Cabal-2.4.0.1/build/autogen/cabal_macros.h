@@ -66,6 +66,17 @@
   (major1) == 0 && (major2) == 4 && (minor) <= 0)
 #endif /* MIN_VERSION_beam_postgres */
 
+/* package http-api-data-0.4.1 */
+#ifndef VERSION_http_api_data
+#define VERSION_http_api_data "0.4.1"
+#endif /* VERSION_http_api_data */
+#ifndef MIN_VERSION_http_api_data
+#define MIN_VERSION_http_api_data(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  4 || \
+  (major1) == 0 && (major2) == 4 && (minor) <= 1)
+#endif /* MIN_VERSION_http_api_data */
+
 /* package polysemy-1.3.0.0 */
 #ifndef VERSION_polysemy
 #define VERSION_polysemy "1.3.0.0"
@@ -265,10 +276,10 @@
 #endif /* MIN_TOOL_VERSION_strip */
 
 #ifndef CURRENT_PACKAGE_KEY
-#define CURRENT_PACKAGE_KEY "servant-playground-0.1.0.0-CYyEYnuBEgNKUe1AA7uNQU"
+#define CURRENT_PACKAGE_KEY "servant-playground-0.1.0.0-2v2dEpAXo1hCeRpOXZlNH4"
 #endif /* CURRENT_PACKAGE_KEY */
 #ifndef CURRENT_COMPONENT_ID
-#define CURRENT_COMPONENT_ID "servant-playground-0.1.0.0-CYyEYnuBEgNKUe1AA7uNQU"
+#define CURRENT_COMPONENT_ID "servant-playground-0.1.0.0-2v2dEpAXo1hCeRpOXZlNH4"
 #endif /* CURRENT_COMPONENT_ID */
 #ifndef CURRENT_PACKAGE_VERSION
 #define CURRENT_PACKAGE_VERSION "0.1.0.0"

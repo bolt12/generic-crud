@@ -19,48 +19,70 @@ import Database
 import Types
 import Database.Beam
 import Database.Beam.Postgres
+import Database.Beam.Backend.Types
+import Database.Beam.Schema.Tables
+import Database.Beam.Backend.SQL.SQL92
+import Database.Beam.Postgres.Syntax
 import GHC.Generics
 
-data DatabaseEff e m a where
-  All :: DatabaseEff e m [e]
-  Get :: Int -> DatabaseEff e m e
-  Post :: e -> DatabaseEff e m e
-  Put :: Int -> e -> DatabaseEff e m e
-  Delete :: Int -> DatabaseEff e m e
+data CRUDEff primaryKey entity m a where
+  All :: CRUDEff primaryKey entity m [entity]
+  Get :: primaryKey -> CRUDEff primaryKey entity m entity
+  Post :: entity -> CRUDEff primaryKey entity m entity
+  Put :: primaryKey -> entity -> CRUDEff primaryKey entity m entity
+  Delete :: primaryKey -> CRUDEff primaryKey entity m entity
 
-makeSem ''DatabaseEff
+makeSem ''CRUDEff
 
-data DbError = UserNotFound
+data DbError = UserNotFound deriving Show
 
-databaseEffUserBeamToIO :: (Members '[Embed IO, Error DbError, Input Connection, Trace] r)
-                        => Sem (DatabaseEff User ': r) a -> Sem r a
-databaseEffUserBeamToIO sem = do
+databaseEffBeamToIO ::
+                    ( Members '[Embed IO, Error DbError, Input Connection, Trace] r,
+                      Beamable table,
+                      Table table,
+                      Database Postgres db,
+                      Show (table Identity),
+                      Show (PrimaryKey table Identity),
+                      Generic (table Exposed),
+                      Generic (table Identity),
+                      Generic (table (WithConstraint (HasSqlValueSyntax PgValueSyntax))),
+                      Generic (PrimaryKey table Identity),
+                      Generic (PrimaryKey table Exposed),
+                      Generic (PrimaryKey table (WithConstraint (HasSqlEqualityCheck Postgres))),
+                      Generic (PrimaryKey table (WithConstraint (HasSqlValueSyntax PgValueSyntax))),
+                      FromBackendRow Postgres (table Identity),
+                      FieldsFulfillConstraint (HasSqlEqualityCheck Postgres) table,
+                      FieldsFulfillConstraint (HasSqlEqualityCheck Postgres) (PrimaryKey table),
+                      FieldsFulfillConstraint (HasSqlValueSyntax PgValueSyntax) table,
+                      FieldsFulfillConstraint (HasSqlValueSyntax PgValueSyntax) (PrimaryKey table)
+                    )
+                    => DatabaseEntity Postgres db (TableEntity table)
+                    -> Sem (CRUDEff (PrimaryKey table Identity) (table Identity) ': r) a
+                    -> Sem r a
+databaseEffBeamToIO t sem = do
   conn <- input @Connection
   interpret (\case
     All -> do
       trace "Selecting all"
-      embed . runBeamPostgres conn $ selectAllE (_users userDb)
+      embed . runBeamPostgres conn $ selectAllE t
     Get id -> do
       trace ("Selecting id:" ++ show id)
-      let u = User { _userId = id }
-      r <- embed . runBeamPostgres conn $ selectEById (primaryKey u) (_users userDb)
+      r <- embed . runBeamPostgres conn $ selectEById id t
       case r of
         Nothing -> throw UserNotFound
         Just r_ -> return r_
     Post u -> do
       trace ("Inserting user" ++ show u)
-      embed . runBeamPostgres conn $ insertE u (_users userDb)
+      embed . runBeamPostgres conn $ insertE u t
     Put id u -> do
       trace ("Updating user: " ++ show id ++ " " ++ show u)
-      let u_ = User { _userId = id }
-      r <- embed . runBeamPostgres conn $ updateE (primaryKey u_) u (_users userDb)
+      r <- embed . runBeamPostgres conn $ updateE id u t
       case r of
         Nothing -> throw UserNotFound
         Just r_ -> return r_
     Delete id -> do
       trace ("Deleting user: " ++ show id)
-      let u_ = User { _userId = id }
-      r <- embed . runBeamPostgres conn $ deleteE (primaryKey u_) (_users userDb)
+      r <- embed . runBeamPostgres conn $ deleteE id t
       case r of
         Nothing -> throw UserNotFound
         Just r_ -> return r_

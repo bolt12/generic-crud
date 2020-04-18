@@ -23,45 +23,47 @@ import Polysemy (Sem, Member, Embed, runM)
 import Polysemy.Input
 import Polysemy.Error
 import Polysemy.Trace
-import qualified DatabaseEff as DB
 import Control.Monad.Trans.Except
 import Database.Beam
 import Database.Beam.Migrate.Simple
 import Database.Beam.Postgres
 import Database.Beam.Postgres.Migrate (migrationBackend)
+import qualified DatabaseEff as Eff
+import qualified Database as DB
 
-data CRUDRoute resourceKind resourceType route = CRUDRoute
-  { all :: route :- AppendSymbol resourceKind "s" :> Get '[JSON] [resourceType],
-    get :: route :- resourceKind :> Capture "id" Int :> Get '[JSON] resourceType,
-    post :: route :- resourceKind :> ReqBody '[JSON] resourceType :> Post '[JSON] resourceType,
-    put :: route :- resourceKind :> Capture "id" Int :> ReqBody '[JSON] resourceType :> Put '[JSON] resourceType,
-    delete :: route :- resourceKind :> Capture "id" Int :> Delete '[JSON] resourceType
+data CRUDRoute resourceName primaryKey resourceType route = CRUDRoute
+  { all :: route :- AppendSymbol resourceName "s" :> Get '[JSON] [resourceType],
+    get :: route :- resourceName :> Capture "id" primaryKey :> Get '[JSON] resourceType,
+    post :: route :- resourceName :> ReqBody '[JSON] resourceType :> Post '[JSON] resourceType,
+    put :: route :- resourceName :> Capture "id" primaryKey :> ReqBody '[JSON] resourceType :> Put '[JSON] resourceType,
+    delete :: route :- resourceName :> Capture "id" primaryKey :> Delete '[JSON] resourceType
   } deriving Generic
 
-record :: Member (DB.DatabaseEff User) r => CRUDRoute "user" User (AsServerT (Sem r))
+record :: Member (Eff.CRUDEff (PrimaryKey UserT Identity) (UserT Identity)) r 
+       => CRUDRoute "user" (PrimaryKey UserT Identity) User (AsServerT (Sem r))
 record = CRUDRoute
-  { Server.all = DB.all,
-    get = DB.get,
-    post = DB.post,
-    put = DB.put,
-    Server.delete = DB.delete
+  { Server.all = Eff.all,
+    get = Eff.get,
+    post = Eff.post,
+    put = Eff.put,
+    Server.delete = Eff.delete
   }
 
 app :: Connection -> Application
 app conn = genericServeT interpretSem record
   where
-    interpretSem :: Sem '[DB.DatabaseEff User, Trace, Input Connection, Error DB.DbError, Embed IO] a -> Handler a
+    interpretSem :: Sem '[Eff.CRUDEff (PrimaryKey UserT Identity) (UserT Identity), Trace, Input Connection, Error Eff.DbError, Embed IO] a -> Handler a
     interpretSem = liftHandler
       . runM
-      . runError @DB.DbError
+      . runError @Eff.DbError
       . runInputConst conn
       . traceToIO
-      . DB.databaseEffUserBeamToIO
+      . Eff.databaseEffBeamToIO (DB._users DB.userDb)
     liftHandler = Handler . ExceptT . fmap handleErrors
-    handleErrors (Left DB.UserNotFound) = Left err404 { errBody = "User not found" }
+    handleErrors (Left Eff.UserNotFound) = Left err404 { errBody = "User not found" }
 
-api :: Proxy (ToServantApi (CRUDRoute "user" User))
-api = genericApi (Proxy :: Proxy (CRUDRoute "user" User))
+api :: Proxy (ToServantApi (CRUDRoute "user" (PrimaryKey UserT Identity) User))
+api = genericApi (Proxy :: Proxy (CRUDRoute "user" (PrimaryKey UserT Identity) User))
 
 startApp :: IO ()
 startApp = do
