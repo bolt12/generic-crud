@@ -61,6 +61,7 @@ app conn = genericServeT interpretSem record
       . Eff.databaseEffBeamToIO (DB._users DB.userDb)
     liftHandler = Handler . ExceptT . fmap handleErrors
     handleErrors (Left Eff.UserNotFound) = Left err404 { errBody = "User not found" }
+    handleErrors (Right r) = Right r
 
 api :: Proxy (ToServantApi (CRUDRoute "user" (PrimaryKey UserT Identity) User))
 api = genericApi (Proxy :: Proxy (CRUDRoute "user" (PrimaryKey UserT Identity) User))
