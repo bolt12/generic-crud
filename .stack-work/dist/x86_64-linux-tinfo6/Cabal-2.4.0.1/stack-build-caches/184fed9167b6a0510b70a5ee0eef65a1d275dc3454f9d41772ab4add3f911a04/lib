@@ -3,9 +3,9 @@
   size: 21
   modtime: 1586521529
 /home/bolt/Desktop/Bolt/Playground/Haskell/servant-playground/src/Database.hs:
-  hash: 719c74b27d453ea61fa09bc1214a73feb747362794265411d5045eabd376ee76
-  size: 6972
-  modtime: 1587221462
+  hash: 6252267223ccba4f7656cae8be024de5bbd23e1b5be3f81911ef01f397de0452
+  size: 7165
+  modtime: 1587902596
 ? /home/bolt/.stack/snapshots/x86_64-linux-tinfo6/184fed9167b6a0510b70a5ee0eef65a1d275dc3454f9d41772ab4add3f911a04/8.6.5/lib/x86_64-linux-ghc-8.6.5/polysemy-plugin-0.2.5.0-CN4K4QrblxcwvKx7dT3la/libHSpolysemy-plugin-0.2.5.0-CN4K4QrblxcwvKx7dT3la.a
 : hash: d4dbb9218a643ba222f12fc494d9a2e2dd0092779de4a08f40b041216746acd1
   size: 274138
@@ -13,16 +13,16 @@
 /home/bolt/Desktop/Bolt/Playground/Haskell/servant-playground/src/DatabaseEff.hs:
   hash: 94e261d8549efd1ea57342b60c85a89f1a82582c545c43e97f863d0afecf32d0
   size: 3420
-  modtime: 1587227351
+  modtime: 1587902487
 /home/bolt/Desktop/Bolt/Playground/Haskell/servant-playground/src/Server.hs:
-  hash: 14e1969e267715503b1bdab8e2fb307e731400de0e9d0880afa531b0b9a386a3
-  size: 2551
-  modtime: 1587229207
+  hash: 6e158d79123a644de952f029275a44778c5c856a5402d16c7e302273ea5e7a9f
+  size: 2561
+  modtime: 1587902640
 /home/bolt/Desktop/Bolt/Playground/Haskell/servant-playground/servant-playground.cabal:
   hash: b5144b018963aadc1722c09ee7e756c9d8e320e490d224e52bc00ebcef36656b
   size: 2097
-  modtime: 1587228420
+  modtime: 1587894859
 /home/bolt/Desktop/Bolt/Playground/Haskell/servant-playground/src/Types.hs:
-  hash: 92a831cd6ea793cf6f503bad70ea83e3dbc073b63a6aa7e58f076b18d3182706
-  size: 1358
-  modtime: 1587229060
+  hash: 0e7f905a581c9ae47fb6eb1740371d9af22a0c67c25a450e8db63684c5846cab
+  size: 1501
+  modtime: 1587902576

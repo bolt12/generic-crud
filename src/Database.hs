@@ -28,8 +28,8 @@ newtype UserDb f = UserDb
 userDb :: DatabaseSettings Postgres UserDb
 userDb = defaultDbSettings
 
--- dbChecked :: CheckedDatabaseSettings be UserDb
--- dbChecked = defaultMigratableDbSettings
+dbChecked :: CheckedDatabaseSettings Postgres UserDb
+dbChecked = defaultMigratableDbSettings
 
 selectAllE ::
            ( MonadBeam be m,

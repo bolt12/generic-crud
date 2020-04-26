@@ -5,6 +5,7 @@
 {-# LANGUAGE StandaloneDeriving #-}
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE DeriveAnyClass #-}
+{-# LANGUAGE OverloadedStrings #-}
 
 module Types
     ( UserT (..),
@@ -17,12 +18,14 @@ import GHC.Generics
 import Data.Aeson
 import Database.Beam
 import qualified Data.Text as T
+import Data.Bifunctor
 import Web.HttpApiData
+import Text.Read
 
 data UserT f = User
   { _userId        :: Columnar f Int
-  , _userFirstName :: Columnar f String
-  , _userLastName  :: Columnar f String
+  , _userFirstName :: Columnar f T.Text
+  , _userLastName  :: Columnar f T.Text
   } deriving (Generic, Beamable)
 
 type User = UserT Identity
@@ -41,10 +44,12 @@ deriving instance Show (Columnar f Int) => Show (PrimaryKey UserT f)
 deriving instance Read (Columnar f Int) => Read (PrimaryKey UserT f)
 
 instance ToHttpApiData (PrimaryKey UserT Identity) where
-  toUrlPiece = T.toLower . T.pack . show
+  toUrlPiece = T.toLower . T.pack . show . fromPK
+    where
+      fromPK (UserId pk) = pk
 
 instance FromHttpApiData (PrimaryKey UserT Identity) where
-  parseUrlPiece = Right . read . T.unpack
+  parseUrlPiece = bimap T.pack UserId . readEither . T.unpack
 
 users :: [User]
 users = [ User 1 "Isaac" "Newton"

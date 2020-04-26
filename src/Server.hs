@@ -68,6 +68,6 @@ api = genericApi (Proxy :: Proxy (CRUDRoute "user" (PrimaryKey UserT Identity) U
 startApp :: IO ()
 startApp = do
   conn <- connect defaultConnectInfo
-  -- runBeamPostgres conn (createSchema _ checkedUserDb)
+  runBeamPostgres conn (autoMigrate migrationBackend DB.dbChecked)
   run 8080 (app conn)
 
