@@ -6,10 +6,7 @@
 {-# LANGUAGE DataKinds       #-}
 {-# LANGUAGE TypeOperators   #-}
 
-module Server
-    ( startApp
-    , app
-    ) where
+module Server where
 
 import GHC.Generics
 import Network.Wai
@@ -39,7 +36,7 @@ data CRUDRoute resourceName primaryKey resourceType route = CRUDRoute
     delete :: route :- resourceName :> Capture "id" primaryKey :> Delete '[JSON] resourceType
   } deriving Generic
 
-record :: Member (Eff.CRUDEff (PrimaryKey UserT Identity) (UserT Identity)) r 
+record :: Member (Eff.CRUDEff (PrimaryKey UserT Identity) (UserT Identity)) r
        => CRUDRoute "user" (PrimaryKey UserT Identity) User (AsServerT (Sem r))
 record = CRUDRoute
   { Server.all = Eff.all,

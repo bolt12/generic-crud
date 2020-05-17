@@ -18,11 +18,13 @@ library
   exposed-modules:     Server,
                        Types,
                        Database,
-                       DatabaseEff
+                       DatabaseEff,
+                       Docs
   build-depends:       base >= 4.7 && < 5
                      , aeson
                      , servant
                      , servant-server
+                     , servant-docs
                      , wai
                      , warp
                      , polysemy <= 1.3.0.0
