@@ -1,3 +1,4 @@
+{-# LANGUAGE ScopedTypeVariables #-}
 {-# LANGUAGE TypeApplications #-}
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE OverloadedStrings #-}
@@ -12,11 +13,12 @@ import Types
 import Server
 import Database.Beam.Schema
 import Data.Functor.Identity
+import Data.Typeable
 
-instance ToCapture (Capture "id" primaryKey) where
+instance Typeable primaryKey => ToCapture (Capture "id" primaryKey) where
   toCapture _ =
-    DocCapture "id"
-               "(primary key) unique identifier"
+    DocCapture "id" $
+               "(" ++ show (typeRep (Proxy :: Proxy primaryKey)) ++ ")" ++ " unique identifier"
 
 instance ToSample User where
   toSamples _ = singleSample (User 1 "Haskell" "Curry")

@@ -33,7 +33,7 @@
 
 ### Captures:
 
-- *id*: (primary key) unique identifier
+- *id*: (PrimaryKey UserT Identity) unique identifier
 
 ### Response:
 
@@ -55,7 +55,7 @@
 
 ### Captures:
 
-- *id*: (primary key) unique identifier
+- *id*: (PrimaryKey UserT Identity) unique identifier
 
 ### Response:
 
@@ -77,7 +77,7 @@
 
 ### Captures:
 
-- *id*: (primary key) unique identifier
+- *id*: (PrimaryKey UserT Identity) unique identifier
 
 ### Request:
 
